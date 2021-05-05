@@ -2,7 +2,7 @@ import axios from 'axios';
 import AnimInputBox from 'components/AnimInputBox';
 import Span from 'components/Span';
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import styled from 'styled-components';
 import theme from 'styles/theme';
 
@@ -45,19 +45,30 @@ const RegisterButton = styled.button`
 const Login = () => {
     const [id,setId] = useState("");
     const [password, setPassword] = useState("");
+    const [redirect, setRedirect] = useState('');
 
     const onSubmitLogin = () => {
         const params = new URLSearchParams();
         params.append('id', id);
         params.append('password', password);
         axios.post('http://api.zurazu.com/admin/login', params).then((response) => {
-            //const accessToken = response.data.accessToken;
+            const accessToken = response.data.accessToken;
+            const refreshToken = response.data.refreshToken;
+            window.sessionStorage.setItem("accessToken", accessToken);
+            window.sessionStorage.setItem("refreshToken", refreshToken);
+            setRedirect("/");
         }).catch((error) => {
             if (error.response) {
                 // 요청이 이루어졌으며 서버가 2xx의 범위를 벗어나는 상태 코드로 응답했습니다.
                 console.log(error.response.data);
                 console.log(error.response.status);
                 console.log(error.response.headers);
+                if(error.response.status === 404) {
+                    alert("해당 계정이 없음");
+                }
+                if(error.response.status === 401) {
+                    alert("승인나지 않은 계정입니다.");
+                }
               }
               else if (error.request) {
                 // 요청이 이루어 졌으나 응답을 받지 못했습니다.
@@ -71,18 +82,19 @@ const Login = () => {
               }
 		});
     }
+    if(redirect !== '') {
+        return <Redirect to={redirect}/>;
+        }
     return <TotalWrapper>
         <InnerWrapper>
             <HeaderWrapper>
                 <Span textColor="white" fontWeight="700" size="2rem">zurazu admin</Span>
             </HeaderWrapper>
             <BodyWrapper>
-                <form onSubmit={onSubmitLogin}>
                     <AnimInputBox inputType="text" label="아이디" name="id" onChange={(e)=>{setId(e.target.value)}} />
                     <AnimInputBox inputType="password" label="비밀번호" name="password" onChange={(e)=>{setPassword(e.target.value)}} />
-                    <LoginButton type="submit" value="로그인" />
-                </form>
-                <NavLink to="/register"><RegisterButton>회원가입</RegisterButton></NavLink>
+                    <LoginButton type="submit" value="로그인" onClick={()=>{onSubmitLogin()}} />
+                <Link to="/register"><RegisterButton>관리자 신청</RegisterButton></Link>
             </BodyWrapper>
         </InnerWrapper>
     </TotalWrapper>;
