@@ -77,7 +77,7 @@ const Register = () => {
 		});
     }
     if(redirect !== '') {
-        <Redirect to={redirect} />
+        return <Redirect to={redirect} />
     }
     return <TotalWrapper>
         <InnerWrapper>
