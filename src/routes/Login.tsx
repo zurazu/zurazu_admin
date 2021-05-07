@@ -2,7 +2,7 @@ import axios from 'axios';
 import AnimInputBox from 'components/AnimInputBox';
 import Span from 'components/Span';
 import React, { useState } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import theme from 'styles/theme';
 
@@ -42,27 +42,32 @@ const RegisterButton = styled.button`
     height: 30px;
     margin-bottom: 10px;
 `;
-const Login = () => {
+const Login = (props: any) => {
     const [id,setId] = useState("");
     const [password, setPassword] = useState("");
-    const [redirect, setRedirect] = useState('');
 
     const onSubmitLogin = () => {
         const params = new URLSearchParams();
         params.append('id', id);
         params.append('password', password);
         axios.post('http://api.zurazu.com/admin/login', params).then((response) => {
-            const accessToken = response.data.accessToken;
-            const refreshToken = response.data.refreshToken;
-            window.sessionStorage.setItem("accessToken", accessToken);
-            window.sessionStorage.setItem("refreshToken", refreshToken);
-            setRedirect("/");
+            const accessToken = response.data.list.accessToken;
+            const refreshToken = response.data.list.refreshToken;
+            const userInfo = {
+                accessToken: accessToken,
+                refreshToken: refreshToken,
+            };
+            window.sessionStorage.setItem("userInfo",JSON.stringify(userInfo));
+            props.history.push("/");
         }).catch((error) => {
             if (error.response) {
                 // 요청이 이루어졌으며 서버가 2xx의 범위를 벗어나는 상태 코드로 응답했습니다.
                 console.log(error.response.data);
                 console.log(error.response.status);
                 console.log(error.response.headers);
+                if(error.response.status === 400) {
+                    alert("아이디 비밀번호를 입력해주세요");
+                }
                 if(error.response.status === 404) {
                     alert("해당 계정이 없음");
                 }
@@ -82,9 +87,6 @@ const Login = () => {
               }
 		});
     }
-    if(redirect !== '') {
-        return <Redirect to={redirect}/>;
-        }
     return <TotalWrapper>
         <InnerWrapper>
             <HeaderWrapper>
