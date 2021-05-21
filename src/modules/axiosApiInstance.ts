@@ -2,17 +2,18 @@ import axios from 'axios';
 
 //refresh 갱신 기능이 있는 axios 인스턴스
 export const axiosApiInstance = axios.create({
-  baseURL: 'http://api.zurazu.com',
 });
 
 //Request interceptor for API calls
 //요청 전에 헤더에 엑세스 토큰을 넣는다.
 axiosApiInstance.interceptors.request.use(
   async config => {
-    const userInfo = window.sessionStorage.getItem('userInfo');
-    const accessToken = userInfo ? JSON.parse(userInfo).accessToken : null;
+    const sessionObj = window.sessionStorage.getItem('userInfo');
+    let userInfo = sessionObj ? JSON.parse(sessionObj) : null;
+    
+    const accessToken = userInfo.accessToken[0];
     config.headers = {
-      'Authorization': `Bearer ${accessToken}`,
+      Authentication: accessToken,
     }
     return config;
   },
@@ -32,10 +33,10 @@ axiosApiInstance.interceptors.response.use((response) => {
     const sessionObj = window.sessionStorage.getItem('userInfo');
 
     let userInfo = sessionObj ? JSON.parse(sessionObj) : null;
-    const access_token = await refreshAccessToken(userInfo.refreshToken);
+    const access_token = await refreshAccessToken(userInfo.refreshToken[0]);
 
     if (userInfo) {
-      originalRequest.headers['Authorization'] = 'Bearer ' + access_token;
+      originalRequest.headers['Authentication'] = access_token;
       userInfo.accessToken = access_token;
       window.sessionStorage.setItem('userInfo', JSON.stringify(userInfo));
     }
