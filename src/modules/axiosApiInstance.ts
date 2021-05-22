@@ -2,6 +2,7 @@ import axios from 'axios';
 
 //refresh 갱신 기능이 있는 axios 인스턴스
 export const axiosApiInstance = axios.create({
+  baseURL:"http://api.zurazu.com",
 });
 
 //Request interceptor for API calls
