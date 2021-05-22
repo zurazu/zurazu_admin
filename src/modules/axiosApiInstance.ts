@@ -51,7 +51,7 @@ const refreshAccessToken = (refreshToken: string) => {
   params.append('refreshToken', refreshToken);
   return new Promise((succ, fail) => {
     axios.post('/admin/refreshToken',params).then((response) => {
-      succ(response.data.list.accessToken);
+      succ(response.data.list.accessToken[0]);
     }).catch((error) => {
       fail(null);
     });
