@@ -6,6 +6,7 @@ import ManageItem from 'routes/ManageItem';
 import NotFound from 'routes/NotFound';
 import Register from 'routes/Register';
 import Home from './routes/Home';
+import ManageItemDetail from 'routes/ManageItemDetail';
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
       <Route path="/register" component={Register} />
       <Route path="/category" component={ManageCategory} />
       <Route path="/notice" component={ManageNotice} />
+      <Route path="/item/:idx" component={ManageItemDetail}/>
       <Route path="/item" component={ManageItem} />
       <Route path="*" component={NotFound} />
     </Switch>

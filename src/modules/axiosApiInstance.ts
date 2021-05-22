@@ -37,7 +37,7 @@ axiosApiInstance.interceptors.response.use((response) => {
 
     if (userInfo) {
       originalRequest.headers['Authentication'] = access_token;
-      userInfo.accessToken = access_token;
+      userInfo.accessToken = [access_token,"Not Null"];
       window.sessionStorage.setItem('userInfo', JSON.stringify(userInfo));
     }
     return axios(originalRequest);
