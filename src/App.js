@@ -17,7 +17,7 @@ const App = () => {
       <Route path="/register" component={Register} />
       <Route path="/category" component={ManageCategory} />
       <Route path="/notice" component={ManageNotice} />
-      <Route path="/item/register/:idx" component={RegisterItem} />
+      <Route path="/item/register/:applySellProductIdx" component={RegisterItem} />
       <Route path="/item/:idx" component={ManageItemDetail}/>
       <Route path="/item" component={ManageItem} />
       <Route path="*" component={NotFound} />
