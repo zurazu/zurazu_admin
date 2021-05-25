@@ -8,6 +8,7 @@ import styled from 'styled-components';
 const ProductWrapper = styled.div`
     display: flex;
     flex-direction: column;
+    line-height: 2rem;
 `;
 
 const ImagesWrapper = styled.div`
@@ -83,17 +84,17 @@ const ManageItemDetail = (props: any) => {
     }
     return <MainTemplate history={props.history}>
         <ProductWrapper>
-            <Span>작성일자: {product.date}</Span>
-            <Span>상품 상태: {product.saleStatus}</Span>
-            <Span>주문 번호: {product.orderNumber}</Span>
-            <Span>사용자 idx: {product.memberIdx}</Span>
-            <Span>카테고리: {product.categoryIdx}</Span>
-            <Span>브랜드 이름: {product.brandName}</Span>
-            <Span>가격: {product.price}</Span>
-            <Span>사이즈: {product.clothingSize}</Span>
-            <Span>옷 상태: {product.clothingStatus}</Span>
-            <Span>성별: {product.gender}</Span>
-            <Span>상품 정보: {product.comments}</Span>
+            <Span size="1.2rem">작성일자: {product.date}</Span>
+            <Span size="1.2rem">상품 상태: {product.saleStatus}</Span>
+            <Span size="1.2rem">주문 번호: {product.orderNumber}</Span>
+            <Span size="1.2rem">사용자 idx: {product.memberIdx}</Span>
+            <Span size="1.2rem">카테고리: {product.categoryIdx}</Span>
+            <Span size="1.2rem">브랜드 이름: {product.brandName}</Span>
+            <Span size="1.2rem">가격: {product.price}</Span>
+            <Span size="1.2rem">사이즈: {product.clothingSize}</Span>
+            <Span size="1.2rem">옷 상태: {product.clothingStatus}</Span>
+            <Span size="1.2rem">성별: {product.gender}</Span>
+            <Span size="1.2rem">상품 정보: {product.comments}</Span>
             {product.lockerTime &&
             <Span textColor="red" fontWeight="700">{product.lockerTime}까지 옷을 보관함으로 가져와야합니다.</Span>}
         </ProductWrapper>
