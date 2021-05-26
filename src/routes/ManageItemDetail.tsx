@@ -102,9 +102,10 @@ const ManageItemDetail = (props: any) => {
             {imageList}
         </ImagesWrapper>
         <FooterWrapper>
-            <Button onClick={onClickAgreeItemButton}>상품 승인</Button>
+            {product.saleStatus !== 'REGISTERED' && <Button onClick={onClickAgreeItemButton}>상품 승인</Button>}
             <Button onClick={onClickDenyItemButton}>상품 거부</Button>
-            <Button onClick={onClickRegisterButton}>상품 등록</Button>
+            {product.saleStatus !== 'REGISTERED' && <Button onClick={onClickRegisterButton}>상품 등록</Button>}
+            
         </FooterWrapper>
     </MainTemplate>
 };
