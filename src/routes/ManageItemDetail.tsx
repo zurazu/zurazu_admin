@@ -48,7 +48,7 @@ const ManageItemDetail = (props: any) => {
         });
     }, [idx]);
     const onClickDenyItemButton = () => {
-        if(product.saleStatus == 'REGISTERED') {
+        if(product.saleStatus === 'REGISTERED') {
             alert("이미 상품 등록된 아이템");
             return;
         }
@@ -62,7 +62,7 @@ const ManageItemDetail = (props: any) => {
         });
     }
     const onClickAgreeItemButton = () => {
-        if(product.saleStatus == 'REGISTERED') {
+        if(product.saleStatus ==='REGISTERED') {
             alert("이미 상품 등록된 아이템");
             return;
         }
@@ -76,7 +76,7 @@ const ManageItemDetail = (props: any) => {
         });
     }
     const onClickRegisterButton = () => {
-        if(product.saleStatus == 'WAITING'){
+        if(product.saleStatus === 'WAITING'){
             alert("상품 승인을 해서 고객으로부터 옷을 받으세요");
             return;
         }
