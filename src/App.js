@@ -8,6 +8,8 @@ import Register from 'routes/Register';
 import Home from './routes/Home';
 import ManageItemDetail from 'routes/ManageItemDetail';
 import RegisterItem from 'routes/RegisterItem';
+import ManageRegisteredItem from 'routes/ManageRegisteredItem';
+import ManagePurchaseHistory from 'routes/ManagePurchaseHistory';
 
 const App = () => {
   return (
@@ -20,6 +22,8 @@ const App = () => {
       <Route path="/item/register/:applySellProductIdx" component={RegisterItem} />
       <Route path="/item/:idx" component={ManageItemDetail}/>
       <Route path="/item" component={ManageItem} />
+      <Route path="/registeredItem" component={ManageRegisteredItem}/>
+      <Route path="/purchaseHistory" component={ManagePurchaseHistory}/>
       <Route path="*" component={NotFound} />
     </Switch>
   );

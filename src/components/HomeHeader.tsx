@@ -51,6 +51,8 @@ const HomeHeader = ({history}: headerProps) => {
         <Link to="/category"><HeaderItem><Span>카테고리 관리</Span></HeaderItem></Link>
         <Link to="/notice"><HeaderItem><Span>공지사항 관리</Span></HeaderItem></Link>
         <Link to="/item"><HeaderItem><Span>판매신청 내역</Span></HeaderItem></Link>
+        <Link to="/registeredItem"><HeaderItem><Span>상품 관리</Span></HeaderItem></Link>
+        <Link to="/purchaseHistory"><HeaderItem><Span>구매 내역 관리</Span></HeaderItem></Link>
     </HeaderItemList>
     <div onClick={()=>{onClickLogout()}}><Span textColor="white" fontWeight="700" size="1.5rem">로그아웃</Span></div>
 </HeaderWrapper>;
