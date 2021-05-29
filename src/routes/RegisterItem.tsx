@@ -69,6 +69,7 @@ const RegisterItem = (props: any) => {
                 return <option key={row.idx} value={row.idx}>{row.korean}</option>
             });
             setMainCategoryOption(categoryOption);
+            setMainCategoryIdx(categories[0].idx);
         }).catch((error) => {
             alert("메인카테고리 불러오기 실패");
         });
@@ -82,6 +83,7 @@ const RegisterItem = (props: any) => {
                     return <option key={row.idx} value={row.idx}>{row.korean}</option>
                 });
                 setSubCategoryOption(categoryOption);
+                setSubCategoryIdx(categories[0].idx);
             }).catch((error) => {
                 alert("서브카테고리 불러오기 실패");
             });
