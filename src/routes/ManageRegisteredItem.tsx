@@ -104,6 +104,8 @@ const ManageRegisteredItem = (props: any) => {
         params.append("limit", limit);
         params.append("mainCategoryIdx", mainCategoryIdx);
         params.append("subCategoryIdx", subCategoryIdx);
+        params.append("notOnlySelectProgressing", 'true');
+
         axiosApiInstance.get("http://api.zurazu.com/product", {params}).then((response)=>{
             const products = response.data.list.products;
 
