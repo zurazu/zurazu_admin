@@ -38,7 +38,7 @@ const ManagePurchaseHistory = (props: any) => {
         axiosApiInstance.get("http://api.zurazu.com/admin/purchase/history",{params}).then((response) => {
 
             const list = response.data.list.history.map((row: any) => {
-                return <PurchaseHistoryThumbnail 
+                return <div onClick={()=>{onClickPurchaseItem(row.orderNumber, row.registerProduct.idx)}}><PurchaseHistoryThumbnail 
                 key={row.idx} 
                 idx={row.idx} 
                 confirmPurchase={row.confirmPurchase} 
@@ -46,7 +46,7 @@ const ManagePurchaseHistory = (props: any) => {
                 customerName={row.customerName} 
                 orderNumber={row.orderNumber} 
                 purchasePrice={row.purchasePrice}
-                registerProduct={row.registerProduct}/>;
+                registerProduct={row.registerProduct}/></div>;
             });
             setPurchaseInfoList(list);
         }).catch((error) => {
@@ -54,7 +54,24 @@ const ManagePurchaseHistory = (props: any) => {
         });
     }, [offset, limit]);
 
+    const onClickPurchaseItem = (orderNumber: string, productIdx: any) => {
+        //현재 api는 입금 완료 뿐만 아니라 상품 상태를 상품 거부 등 다른 상태로도 바꿀 수 있는데 시간 없으니 베타까지는 그냥 입금 완료만 바로 가능하게
+        const confirm = window.confirm("주문번호 " + orderNumber + "의 입금 상태를 \n'입금 완료'로 변경하시겠습니까?");
+        if(confirm === true) {
+            const params = new URLSearchParams();
+            params.append("type", "FINISH_DEPOSIT");
+            params.append("productIdx", productIdx);
+            console.log(productIdx);
+            axiosApiInstance.post("http://api.zurazu.com/admin/product/status/update", params).then((response) => {
+                alert("성공");
+                window.location.reload();
+            }).catch((error) => {
+                alert("실패");
+            });
+        } else {
 
+        }
+    }
     const onClickPrevButton = () => {
         if(offset - 10 < 0){
             setOffset(0);
