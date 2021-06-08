@@ -47,10 +47,7 @@ const Login = (props: any) => {
     const [password, setPassword] = useState("");
 
     const onSubmitLogin = () => {
-        const params = new URLSearchParams();
-        params.append('id', id);
-        params.append('password', password);
-        axios.post('http://api.zurazu.com/admin/login', params).then((response) => {
+        axios.post('http://api.zurazu.com/admin/login', {id: id, password: password}, {headers: {'Content-Type': 'application/json'}}).then((response) => {
             const accessToken = response.data.list.accessToken;
             const refreshToken = response.data.list.refreshToken;
             const userInfo = {

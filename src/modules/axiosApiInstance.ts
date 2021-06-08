@@ -48,10 +48,8 @@ axiosApiInstance.interceptors.response.use((response) => {
 
 const refreshAccessToken = (refreshToken: string) => {
   //토큰 갱신해서 accessToken 반환
-  const params = new URLSearchParams();
-  params.append('refreshToken', refreshToken);
   return new Promise((succ, fail) => {
-    axios.post('http://api.zurazu.com/admin/refreshToken',params).then((response) => {
+    axios.post('http://api.zurazu.com/admin/refreshToken',{refreshToken: refreshToken}).then((response) => {
       succ(response.data.list.accessToken[0]);
     }).catch((error) => {
       fail(null);

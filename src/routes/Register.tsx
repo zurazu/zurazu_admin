@@ -48,10 +48,7 @@ const Register = () => {
     const [redirect, setRedirect] = useState('');
 
     const onSubmitRegister = () => {
-        const params = new URLSearchParams();
-        params.append('id', id);
-        params.append('password', password);
-        axios.post('http://api.zurazu.com/admin/register', params).then((response) => {
+        axios.post('http://api.zurazu.com/admin/register', {id: id, password: password}, {headers: {'Content-Type': 'application/json'}}).then((response) => {
             setRedirect('/');
         }).catch((error) => {
             if (error.response) {
