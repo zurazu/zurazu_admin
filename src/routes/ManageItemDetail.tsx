@@ -90,7 +90,8 @@ const ManageItemDetail = (props: any) => {
             <Span size="1.2rem">사용자 idx: {product.memberIdx}</Span>
             <Span size="1.2rem">카테고리: {product.categoryIdx}</Span>
             <Span size="1.2rem">브랜드 이름: {product.brandName}</Span>
-            <Span size="1.2rem">가격: {product.price}</Span>
+            <Span size="1.2rem">구매 가격: {product.purchasePrice}</Span>
+            <Span size= "1.2rem">희망 가격: {product.desiredPrice}</Span>
             <Span size="1.2rem">사이즈: {product.clothingSize}</Span>
             <Span size="1.2rem">옷 상태: {product.clothingStatus}</Span>
             <Span size="1.2rem">성별: {product.gender}</Span>
