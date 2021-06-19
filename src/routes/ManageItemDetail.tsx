@@ -76,7 +76,7 @@ const ManageItemDetail = (props: any) => {
         });
     }
     const onClickRegisterButton = () => {
-        if(product.saleStatus === 'WAITING'){
+        if(product.saleStatus !== 'AGREE'){
             alert("상품 승인을 해서 고객으로부터 옷을 받으세요");
             return;
         }
