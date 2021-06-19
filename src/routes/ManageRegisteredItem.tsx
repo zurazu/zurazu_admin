@@ -3,6 +3,7 @@ import RegisteredProductThumbnail from 'components/RegisteredProductThumbnail';
 import Span from 'components/Span';
 import { axiosApiInstance } from 'modules/axiosApiInstance';
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 
@@ -110,7 +111,7 @@ const ManageRegisteredItem = (props: any) => {
             const products = response.data.list.products;
 
             const list = products.map((row: any) => {
-                return <RegisteredProductThumbnail key={row.productIdx} imgUrl={row.image.url} brand={row.brand} name={row.name} productIdx={row.productIdx} />
+                return <Link to={"/registeredItem/" + row.productIdx} key={row.productIdx} ><RegisteredProductThumbnail imgUrl={row.image.url} brand={row.brand} name={row.name} productIdx={row.productIdx} /></Link>;
             });
             setProductList(list);
         }).catch((error) => {
