@@ -119,7 +119,7 @@ const RegisterItem = (props: any) => {
         axiosApiInstance.post("http://api.zurazu.com/admin/product/register",params,{headers: {'Content-Type': 'multipart/form-data'}})
         .then((response) => {
             alert("success");
-            props.history.push("http://api.zurazu.com/item");
+            props.history.push("/item");
         }).catch((error) => {
             alert(error.response.data.message);
         });
