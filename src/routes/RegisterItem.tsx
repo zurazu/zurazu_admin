@@ -106,10 +106,14 @@ const RegisterItem = (props: any) => {
         params.append("infoComment", infoComment);
         params.append("searchKeyword", keyword);
         
-        params.append("colorChipImage", colorImgFile[0]);
-        for(let i = 0 ; i < imgFiles.length ; i++) {
-            params.append("photos[" + i + "]", imgFiles[i]);
-            console.log(imgFiles[i]);
+        if(colorImgFile != null) {
+            params.append("colorChipImage", colorImgFile[0]);
+        }
+        if(imgFiles != null) {
+            for(let i = 0 ; i < imgFiles.length ; i++) {
+                params.append("photos[" + i + "]", imgFiles[i]);
+                console.log(imgFiles[i]);
+            }
         }
 
         axiosApiInstance.post("http://api.zurazu.com/admin/product/register",params,{headers: {'Content-Type': 'multipart/form-data'}})
@@ -117,7 +121,7 @@ const RegisterItem = (props: any) => {
             alert("success");
             props.history.push("http://api.zurazu.com/item");
         }).catch((error) => {
-            alert("실패");
+            alert(error.response.data.message);
         });
     }
     useEffect(() => {
