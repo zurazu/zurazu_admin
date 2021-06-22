@@ -92,19 +92,47 @@ const RegisterItem = (props: any) => {
     
     const onSubmitEvent = () => {
         const params = new FormData();
-        params.append("applySellProductIdx", applySellProductIdx);
-        params.append("subCategoryIdx", subCategoryIdx);
-        params.append("name",name);
-        params.append("price",price);
-        params.append("brand",brand);
-        params.append("colorText", colorText);
-        params.append("material", material);
-        params.append("clothingStatus", clothingStatus);
-        params.append("inspectionStatus", inspectionStatus);
-        params.append("clothingSize", size);
-        params.append("laundryComment", laundryComment);
-        params.append("infoComment", infoComment);
-        params.append("searchKeyword", keyword);
+        if(applySellProductIdx != null) {
+            params.append("applySellProductIdx", applySellProductIdx);
+
+        }
+        if(subCategoryIdx != null) {
+            params.append("subCategoryIdx", subCategoryIdx);
+        }
+        if(name != null) {
+            params.append("name",name);
+
+        }
+        if(price != null) {
+            params.append("price",price);
+        }
+        if(brand != null) {
+            params.append("brand",brand);
+        }
+        if(colorText != null){
+            params.append("colorText", colorText);
+        }
+        if(material != null) {
+            params.append("material", material);
+        }
+        if(clothingStatus != null) {
+            params.append("clothingStatus", clothingStatus);
+        }
+        if(inspectionStatus != null) {
+            params.append("inspectionStatus", inspectionStatus);
+        }
+        if(size != null){
+            params.append("clothingSize", size);
+        }
+        if(laundryComment != null) {
+            params.append("laundryComment", laundryComment);
+        }
+        if(infoComment != null){
+            params.append("infoComment", infoComment);
+        }
+        if(keyword != null) {
+            params.append("searchKeyword", keyword);
+        }
         
         if(colorImgFile != null) {
             params.append("colorChipImage", colorImgFile[0]);

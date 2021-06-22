@@ -51,7 +51,7 @@ const RegisteredItemDetail = (props: any) => {
             alert("success");
             props.history.goBack();
         }).catch((error) => {
-            alert("조회 실패");
+            alert(error.response.data.message);
         });
         }
     }
